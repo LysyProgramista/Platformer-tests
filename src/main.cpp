@@ -3,13 +3,9 @@
 
 using namespace std;
 
-int ball(int x, int y, int width, int height)
-{
-    DrawRectangle(x, y, width, height, BLUE);
-}
-
 int main(void)
 {
+    Rectangle a{40, 20, 50, 50};
     // Initialization
     //--------------------------------------------------------------------------------------
     const int screenWidth = 800;
@@ -17,7 +13,7 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input");
 
-    Vector2 ballPosition = { (float)screenWidth/2, (float)screenHeight/2 };
+    Vector2 vec = { (float)screenWidth/2, (float)screenHeight/2 };
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -25,24 +21,20 @@ int main(void)
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        
         // Update
         //----------------------------------------------------------------------------------
-        if (IsKeyDown(KEY_RIGHT)) ballPosition.x += 3.0f;
-        if (IsKeyDown(KEY_LEFT)) ballPosition.x -= 3.0f;
-        if (IsKeyDown(KEY_UP)) ballPosition.y -= 3.0f;
-        if (IsKeyDown(KEY_DOWN)) ballPosition.y += 3.0f;
+        if (IsKeyDown(KEY_RIGHT)) a.x += 3.0f;
+        if (IsKeyDown(KEY_LEFT)) a.x -= 3.0f;
+        if (IsKeyDown(KEY_UP)) a.y -= 3.0f;
+        if (IsKeyDown(KEY_DOWN)) a.y += 3.0f;
         //----------------------------------------------------------------------------------
 
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
-            ball(0, 0, 10, screenHeight);
-            ClearBackground(RAYWHITE);
-                
-            DrawRectangle(ballPosition.x, ballPosition.y, 60, 30, BLUE);
             
-
+            DrawRectangleRec(a, YELLOW);
+            ClearBackground(RAYWHITE);
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
